@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component } from '@angular/core';
 
 @Component({
@@ -12,12 +13,8 @@ export class AppComponent {
   timeLog =[];
 
   onClick(event : any){
-    if (this.showParagraph === false) 
-    {
-      this.showParagraph = true;
-    } else {
-      this.showParagraph = false;
-    }
+
+    this.showParagraph? this.showParagraph = false : this.showParagraph = true;
     
     this.logArray.push(`${event.pageX},${event.pageY}`);
     this.timeLog.push(event.timeStamp)
