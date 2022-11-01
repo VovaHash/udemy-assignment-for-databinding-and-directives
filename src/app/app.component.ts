@@ -14,10 +14,18 @@ export class AppComponent {
 
   onClick(event : any){
 
-    this.showParagraph? this.showParagraph = false : this.showParagraph = true;
+    this.showParagraph = !this.showParagraph;
     
     this.logArray.push(`${event.pageX},${event.pageY}`);
     this.timeLog.push(event.timeStamp)
+  }
+
+  // for the databinding task
+
+  username = '';
+
+  resetUsername(){
+    this.username='';
   }
 
 

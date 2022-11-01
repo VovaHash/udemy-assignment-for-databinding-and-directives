@@ -1,22 +1,65 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <ol>
-        <li>Add A button which says 'Display Details'</li>
-        <li>Add a paragraph with any content of your choice (e.g. 'Secret Password = tuna')</li>
-        <li>Toggle the displaying of that paragraph with the button created in the first step</li>
-        <li>Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</li>
-        <li>Starting at the 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass)</li>
-      </ol>
+      <hr>
+        <p>Add A button which says 'Display Details'</p>
+        <p>
+          Add a paragraph with any content of your choice (e.g. 'Secret Password
+          = tuna')
+        </p>
+        <p>
+          Toggle the displaying of that paragraph with the button created in the
+          first step
+        </p>
+        <p>
+          Log all button clicks in an array and output that array below the
+          secret paragraph (maybe log a timestamp or simply an incrementing
+          number)
+        </p>
+        <p>
+          Starting at the 5th log item, give all future log items a blue
+          background (via ngStyle) and white color (ngClass)
+        </p>
     </div>
   </div>
-  <div class="row">
-    <button (click)="onClick($event)"  >Display Details</button>
-    <span *ngIf="showParagraph">Secret password = tuna</span>
-    <div *ngFor="let k of logArray, let i=index" 
-    [ngStyle]="k>=5?{'background-color': 'blue'}:{'background-color':'white'}" 
-    [ngClass]="{'white': k>=5}">
-    Click # {{i+1}}. Coordinates : {{k}}. Time : {{timeLog[i]}}.
+  <!-- My solution -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>Solution</h4>
+        <button class="btn-primary" (click)="onClick($event)">Display Details</button>
+        <span *ngIf="showParagraph">Secret password = tuna</span>
+        <p
+          *ngFor="let k of logArray; let i = index"
+          [ngStyle]="{backgroundColor: i>=4 ? 'blue':'white'}"
+          [ngClass]="{ white: i >= 4 }"
+        >
+          Click # {{ i + 1 }}. Coordinates : {{ k }}. Time : {{ timeLog[i] }}.
+        </p>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+  <!-- Older task on databinding -->
+  <p>Add an Input field which updates a property ('username') via Two-Way Binding</p>
+  <p>Output the username property via String Interpolation in a paragraph below</p>
+  <p>Add a button which may only be clicked if the username is NOT an empty string</p>
+  <p>Upon clicking the button reset the username to an empty string</p>
+
+  <!-- My solution for the older task -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h4>Solution</h4>
+        <label>Username</label>
+        <input type="text" class="form-control" [(ngModel)]="username">
+        <p>{{username}}</p>
+        <button [disabled]="username === ''" 
+        [ngClass]="{white : username == '', 'btn-primary' : username !== '' }" 
+        (click)="resetUsername()">Clear username</button>
+        <hr>
+      </div>
     </div>
   </div>
 </div>
